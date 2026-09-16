@@ -3,642 +3,303 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>公会日报看板 - 2026-09-15</title>
+  <title>Boloup 公会日报看板 - 2026-09-15</title>
   <style>
     :root {
-      color-scheme: light;
-      --bg: #f5f7fb;
+      --bg: #f6f8fb;
       --panel: #ffffff;
-      --ink: #172033;
-      --muted: #637083;
-      --line: #dfe5ee;
+      --ink: #18243a;
+      --muted: #65748b;
+      --line: #dfe6f0;
       --blue: #2563eb;
-      --green: #07815f;
-      --amber: #a65f00;
-      --red: #b42318;
-      --shadow: 0 10px 28px rgba(23, 32, 51, 0.08);
+      --green: #059669;
+      --amber: #d97706;
+      --red: #dc2626;
+      --teal: #0f766e;
+      --purple: #7c3aed;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       line-height: 1.45;
     }
-
+    .page { max-width: 1480px; margin: 0 auto; padding: 28px; }
     header {
-      background: #10233f;
-      color: #fff;
-      padding: 28px 32px 24px;
-    }
-
-    header h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      font-weight: 760;
-      letter-spacing: 0;
-    }
-
-    header p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 14px;
-    }
-
-    main {
-      max-width: 1480px;
-      margin: 0 auto;
-      padding: 24px 28px 40px;
-    }
-
-    .summary-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      padding: 24px 0 20px;
+      border-bottom: 1px solid var(--line);
     }
-
-    .metric {
+    h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    .sub { color: var(--muted); font-size: 15px; }
+    .stamp { text-align: right; color: var(--muted); font-size: 14px; }
+    .grid { display: grid; gap: 16px; }
+    .cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 18px; }
+    .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    section {
+      margin-top: 18px;
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-      min-height: 120px;
-    }
-
-    .metric .label {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-
-    .metric .value {
-      font-size: 26px;
-      font-weight: 780;
-      margin-bottom: 8px;
-      letter-spacing: 0;
-    }
-
-    .metric .note {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .section {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      margin-top: 16px;
       overflow: hidden;
+      box-shadow: 0 8px 26px rgba(21, 31, 52, .04);
     }
-
     .section-head {
       display: flex;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
+      align-items: center;
       padding: 16px 18px;
       border-bottom: 1px solid var(--line);
-      align-items: flex-end;
     }
-
-    .section h2 {
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: 0;
-    }
-
-    .section .hint {
-      color: var(--muted);
-      font-size: 13px;
-      text-align: right;
-    }
-
-    .tables {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      padding: 16px;
-    }
-
-    .table-block {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: auto;
-      min-width: 0;
-    }
-
-    .table-title {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 12px 10px;
-      border-bottom: 1px solid var(--line);
-      background: #f8fafc;
-      font-size: 14px;
-      font-weight: 720;
-    }
-
-    .table-title span:last-child {
-      color: var(--muted);
-      font-weight: 520;
-      white-space: nowrap;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-
-    th, td {
-      padding: 9px 10px;
-      border-bottom: 1px solid #edf1f6;
-      text-align: left;
-      white-space: nowrap;
-    }
-
-    th {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 680;
-      background: #fbfcfe;
-    }
-
-    td.num, th.num {
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-
-    tr:last-child td { border-bottom: 0; }
-
-    .rank {
-      display: inline-flex;
-      width: 22px;
-      height: 22px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: #e8eefc;
-      color: #244aa5;
-      font-size: 12px;
-      font-weight: 760;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      height: 22px;
-      padding: 0 8px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 680;
-      background: #edf8f4;
-      color: var(--green);
-    }
-
-    .tag.amber {
-      background: #fff4df;
-      color: var(--amber);
-    }
-
-    .tag.red {
-      background: #fff0ee;
-      color: var(--red);
-    }
-
-    .notes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .note-card {
+    h2 { margin: 0; font-size: 18px; }
+    .note { color: var(--muted); font-size: 13px; }
+    .kpi {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 14px 16px;
-      box-shadow: var(--shadow);
+      padding: 16px;
+      min-height: 122px;
     }
-
-    .note-card h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-
-    .note-card p {
-      margin: 0;
-      color: var(--muted);
+    .kpi .label { color: var(--muted); font-size: 13px; }
+    .kpi .value { margin-top: 8px; font-size: 24px; font-weight: 760; }
+    .kpi .who { margin-top: 10px; font-size: 14px; color: var(--ink); }
+    .kpi .extra { margin-top: 4px; font-size: 12px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th, td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #e8edf5;
+      text-align: left;
+      vertical-align: top;
       font-size: 13px;
+      word-break: break-word;
     }
-
-    footer {
+    th { color: #53627a; font-weight: 700; background: #fbfcfe; }
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .rank { width: 54px; color: var(--muted); }
+    .gid { color: var(--muted); font-size: 12px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+      white-space: nowrap;
+      background: #eef2ff;
+      color: var(--blue);
+    }
+    .pill.green { background: #e9fbf3; color: var(--green); }
+    .pill.amber { background: #fff6df; color: var(--amber); }
+    .pill.red { background: #fff0f0; color: var(--red); }
+    .pill.teal { background: #e7fbf8; color: var(--teal); }
+    .pill.purple { background: #f4efff; color: var(--purple); }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 16px; }
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fff;
+    }
+    .mini h3 { margin: 10px 0 8px; font-size: 15px; }
+    .mini p { margin: 0; color: var(--muted); font-size: 13px; }
+    .footer {
+      padding: 18px 0 6px;
       color: var(--muted);
       font-size: 12px;
-      padding: 18px 2px 0;
     }
-
-    @media (max-width: 1100px) {
-      .summary-grid, .tables, .notes { grid-template-columns: 1fr; }
-      header { padding: 24px 20px; }
-      main { padding: 18px 16px 32px; }
-      .section-head { align-items: flex-start; flex-direction: column; }
-      .section .hint { text-align: left; }
+    @media (max-width: 980px) {
+      .page { padding: 18px; }
+      header { grid-template-columns: 1fr; }
+      .stamp { text-align: left; }
+      .cols-4, .cols-2, .cards { grid-template-columns: 1fr; }
+      table { table-layout: auto; }
+      th, td { font-size: 12px; padding: 9px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>公会日报看板</h1>
-    <p>数据日期：2026-09-14，北京时间自然日。生成日期：2026-09-15。</p>
-  </header>
+  <main class="page">
+    <header>
+      <div>
+        <h1>Boloup 公会日报看板</h1>
+        <div class="sub">数据日期：2026-09-15，北京时间自然日。按公会 ID 与公会名聚合，重点看充值、游戏、幸运礼物、邀请与老公会近期增长。</div>
+      </div>
+      <div class="stamp">生成时间：2026-09-16 09:30<br>来源：ThinkingData 只读查询</div>
+    </header>
 
-  <main>
-    <div class="summary-grid">
-      <div class="metric">
-        <div class="label">充值金币最高</div>
-        <div class="value">46,584,600</div>
-        <div class="note">Welcome To Reality（140906）</div>
+    <div class="grid cols-4">
+      <div class="kpi">
+        <div class="label">充值金币第一</div>
+        <div class="value">53,456,158</div>
+        <div class="who">Dpmax Agency</div>
+        <div class="extra">公会 ID 143427</div>
       </div>
-      <div class="metric">
-        <div class="label">游戏金币消耗最高</div>
-        <div class="value">424,349,135</div>
-        <div class="note">Welcome To Reality（140906）</div>
+      <div class="kpi">
+        <div class="label">游戏金币消耗第一</div>
+        <div class="value">176,714,325</div>
+        <div class="who">Dpmax Agency</div>
+        <div class="extra">老公会近 7 天继续放量</div>
       </div>
-      <div class="metric">
-        <div class="label">幸运礼物金币消耗最高</div>
-        <div class="value">23,965,688</div>
-        <div class="note">NUCLEAR AGENCY（140143）</div>
+      <div class="kpi">
+        <div class="label">幸运礼物金币消耗第一</div>
+        <div class="value">58,623,434</div>
+        <div class="who">Agency Paari</div>
+        <div class="extra">公会 ID 138927</div>
       </div>
-      <div class="metric">
-        <div class="label">邀请人数最高</div>
-        <div class="value">39</div>
-        <div class="note">Borosw Agency（142780）/ Sikhanyiso（143890）</div>
+      <div class="kpi">
+        <div class="label">邀请人数第一</div>
+        <div class="value">14</div>
+        <div class="who">OFFICIALNEPAL</div>
+        <div class="extra">邀请侧整体较低，需看连续趋势</div>
       </div>
     </div>
 
-    <div class="notes">
-      <div class="note-card">
-        <h3>昨日重点</h3>
-        <p>Welcome To Reality 同时位列充值和游戏消耗第一，属于昨日最强势公会。</p>
-      </div>
-      <div class="note-card">
-        <h3>互动观察</h3>
-        <p>游戏参与人数最高的已归属公会为 CHERRY AGENCY，幸运礼物送礼人数最高的已归属公会为 Nana。</p>
-      </div>
-      <div class="note-card">
-        <h3>新公会</h3>
-        <p>近 7 天创建且昨日有充值表现的新公会中，OGxAGENCY 表现最突出。</p>
-      </div>
-    </div>
-
-    <section class="section">
+    <section>
       <div class="section-head">
         <h2>昨日核心榜单</h2>
-        <div class="hint">按公会 ID 和公会名分组；未归属数据保留在参与类明细中，摘要优先看已归属公会。</div>
+        <span class="note">金币充值暂按 recharge_complete.gold；exchange 事件本次未能在元数据中确认，后续确认后再合并 diamonds 换金币口径。</span>
       </div>
-      <div class="tables">
-        <div class="table-block">
-          <div class="table-title"><span>充值金币 Top 20</span><span>recharge_complete.gold</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th class="num">充值金币</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>140906</td><td>Welcome To Reality</td><td class="num">46,584,600</td></tr>
-              <tr><td><span class="rank">2</span></td><td>129077</td><td>HONEY AGENCY</td><td class="num">28,468,800</td></tr>
-              <tr><td><span class="rank">3</span></td><td>143427</td><td>Dpmax Agency</td><td class="num">21,559,291</td></tr>
-              <tr><td><span class="rank">4</span></td><td>139516</td><td>Davoo Agency</td><td class="num">17,328,800</td></tr>
-              <tr><td><span class="rank">5</span></td><td>134401</td><td>Digital Agency</td><td class="num">15,170,700</td></tr>
-              <tr><td><span class="rank">6</span></td><td>126667</td><td>Manasse</td><td class="num">13,805,800</td></tr>
-              <tr><td><span class="rank">7</span></td><td>141886</td><td>Nepal Top Agency</td><td class="num">12,100,400</td></tr>
-              <tr><td><span class="rank">8</span></td><td>138927</td><td>Agency Paari</td><td class="num">10,992,600</td></tr>
-              <tr><td><span class="rank">9</span></td><td>130462</td><td>CHERRY AGENCY</td><td class="num">9,307,400</td></tr>
-              <tr><td><span class="rank">10</span></td><td>141695</td><td>HONEY BUNNY</td><td class="num">9,091,800</td></tr>
-              <tr><td><span class="rank">11</span></td><td>140580</td><td>COOL AGENCY BG</td><td class="num">8,609,800</td></tr>
-              <tr><td><span class="rank">12</span></td><td>107020</td><td>Nexus Agency</td><td class="num">8,464,800</td></tr>
-              <tr><td><span class="rank">13</span></td><td>140143</td><td>NUCLEAR AGENCY</td><td class="num">7,974,000</td></tr>
-              <tr><td><span class="rank">14</span></td><td>140268</td><td>Bintang siger</td><td class="num">7,112,000</td></tr>
-              <tr><td><span class="rank">15</span></td><td>141088</td><td>Gk Agency</td><td class="num">6,726,000</td></tr>
-              <tr><td><span class="rank">16</span></td><td>141227</td><td>MANKAMANA AGENCY</td><td class="num">6,352,600</td></tr>
-              <tr><td><span class="rank">17</span></td><td>138936</td><td>Moon</td><td class="num">6,158,000</td></tr>
-              <tr><td><span class="rank">18</span></td><td>139805</td><td>Ganesh Agency</td><td class="num">5,923,400</td></tr>
-              <tr><td><span class="rank">19</span></td><td>137919</td><td>MYSQ Agency</td><td class="num">5,629,800</td></tr>
-              <tr><td><span class="rank">20</span></td><td>142164</td><td>Hidden shadow</td><td class="num">5,374,800</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>游戏金币消耗 Top 20</span><span>game_daily_betting.total_bet_amount</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th class="num">消耗金币</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>140906</td><td>Welcome To Reality</td><td class="num">424,349,135</td></tr>
-              <tr><td><span class="rank">2</span></td><td>126667</td><td>Manasse</td><td class="num">340,200,690</td></tr>
-              <tr><td><span class="rank">3</span></td><td>143427</td><td>Dpmax Agency</td><td class="num">326,502,890</td></tr>
-              <tr><td><span class="rank">4</span></td><td>130462</td><td>CHERRY AGENCY</td><td class="num">191,397,110</td></tr>
-              <tr><td><span class="rank">5</span></td><td>139516</td><td>Davoo Agency</td><td class="num">130,535,800</td></tr>
-              <tr><td><span class="rank">6</span></td><td>131132</td><td>SepDC</td><td class="num">98,872,430</td></tr>
-              <tr><td><span class="rank">7</span></td><td>137919</td><td>MYSQ Agency</td><td class="num">87,075,665</td></tr>
-              <tr><td><span class="rank">8</span></td><td>132810</td><td>Tewogbope</td><td class="num">76,298,050</td></tr>
-              <tr><td><span class="rank">9</span></td><td>141886</td><td>Nepal Top Agency</td><td class="num">71,012,945</td></tr>
-              <tr><td><span class="rank">10</span></td><td>116236</td><td>crusher agency</td><td class="num">68,825,585</td></tr>
-              <tr><td><span class="rank">11</span></td><td>141277</td><td>Bona</td><td class="num">68,292,720</td></tr>
-              <tr><td><span class="rank">12</span></td><td>123474</td><td>OFFICIALNEPAL</td><td class="num">66,511,680</td></tr>
-              <tr><td><span class="rank">13</span></td><td>138927</td><td>Agency Paari</td><td class="num">65,406,685</td></tr>
-              <tr><td><span class="rank">14</span></td><td>138936</td><td>Moon</td><td class="num">64,782,300</td></tr>
-              <tr><td><span class="rank">15</span></td><td>141227</td><td>MANKAMANA AGENCY</td><td class="num">50,087,695</td></tr>
-              <tr><td><span class="rank">16</span></td><td>139805</td><td>Ganesh Agency</td><td class="num">49,932,150</td></tr>
-              <tr><td><span class="rank">17</span></td><td>142962</td><td>DARK EMPIRE GROUP</td><td class="num">49,806,690</td></tr>
-              <tr><td><span class="rank">18</span></td><td>140143</td><td>NUCLEAR AGENCY</td><td class="num">49,431,375</td></tr>
-              <tr><td><span class="rank">19</span></td><td>137433</td><td>Ida 77</td><td class="num">49,212,100</td></tr>
-              <tr><td><span class="rank">20</span></td><td>141088</td><td>Gk Agency</td><td class="num">46,913,870</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>游戏参与人数 Top 20</span><span>game_daily_betting 触发用户数</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th class="num">参与人数</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>-</td><td>未归属</td><td class="num">233</td></tr>
-              <tr><td><span class="rank">2</span></td><td>130462</td><td>CHERRY AGENCY</td><td class="num">197</td></tr>
-              <tr><td><span class="rank">3</span></td><td>123474</td><td>OFFICIALNEPAL</td><td class="num">196</td></tr>
-              <tr><td><span class="rank">4</span></td><td>141886</td><td>Nepal Top Agency</td><td class="num">132</td></tr>
-              <tr><td><span class="rank">5</span></td><td>141031</td><td>Nana</td><td class="num">126</td></tr>
-              <tr><td><span class="rank">6</span></td><td>139876</td><td>RG</td><td class="num">117</td></tr>
-              <tr><td><span class="rank">7</span></td><td>129077</td><td>HONEY AGENCY</td><td class="num">106</td></tr>
-              <tr><td><span class="rank">8</span></td><td>140580</td><td>COOL AGENCY BG</td><td class="num">106</td></tr>
-              <tr><td><span class="rank">9</span></td><td>140906</td><td>Welcome To Reality</td><td class="num">104</td></tr>
-              <tr><td><span class="rank">10</span></td><td>133175</td><td>JUST FOR YOU</td><td class="num">99</td></tr>
-              <tr><td><span class="rank">11</span></td><td>116851</td><td>LION AGENCY</td><td class="num">98</td></tr>
-              <tr><td><span class="rank">12</span></td><td>116236</td><td>crusher agency</td><td class="num">93</td></tr>
-              <tr><td><span class="rank">13</span></td><td>142101</td><td>SBR Agency</td><td class="num">91</td></tr>
-              <tr><td><span class="rank">14</span></td><td>141227</td><td>MANKAMANA</td><td class="num">89</td></tr>
-              <tr><td><span class="rank">15</span></td><td>132501</td><td>Coffee Agency</td><td class="num">82</td></tr>
-              <tr><td><span class="rank">16</span></td><td>142780</td><td>Borosw Agency</td><td class="num">78</td></tr>
-              <tr><td><span class="rank">17</span></td><td>107020</td><td>Nexus Agency</td><td class="num">76</td></tr>
-              <tr><td><span class="rank">18</span></td><td>103415</td><td>VOICENEPAL</td><td class="num">74</td></tr>
-              <tr><td><span class="rank">19</span></td><td>141088</td><td>Gk Agency</td><td class="num">74</td></tr>
-              <tr><td><span class="rank">20</span></td><td>117852</td><td>Nwafor2025</td><td class="num">73</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>邀请人数 Top 20</span><span>invite_complete 次数</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th class="num">邀请人数</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>142780</td><td>Borosw Agency</td><td class="num">39</td></tr>
-              <tr><td><span class="rank">2</span></td><td>143890</td><td>Sikhanyiso</td><td class="num">39</td></tr>
-              <tr><td><span class="rank">3</span></td><td>130462</td><td>CHERRY AGENCY</td><td class="num">33</td></tr>
-              <tr><td><span class="rank">4</span></td><td>141886</td><td>Nepal Top Agency</td><td class="num">17</td></tr>
-              <tr><td><span class="rank">5</span></td><td>142826</td><td>mamaGk agency</td><td class="num">15</td></tr>
-              <tr><td><span class="rank">6</span></td><td>142782</td><td>Shanti</td><td class="num">14</td></tr>
-              <tr><td><span class="rank">7</span></td><td>140580</td><td>COOL AGENCY BG</td><td class="num">13</td></tr>
-              <tr><td><span class="rank">8</span></td><td>103415</td><td>VOICENEPAL</td><td class="num">12</td></tr>
-              <tr><td><span class="rank">9</span></td><td>141031</td><td>Nana</td><td class="num">11</td></tr>
-              <tr><td><span class="rank">10</span></td><td>142856</td><td>Family nana</td><td class="num">11</td></tr>
-              <tr><td><span class="rank">11</span></td><td>144269</td><td>Akmal Agent</td><td class="num">11</td></tr>
-              <tr><td><span class="rank">12</span></td><td>141227</td><td>MANKAMANA</td><td class="num">10</td></tr>
-              <tr><td><span class="rank">13</span></td><td>142964</td><td>Divine Nepal</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">14</span></td><td>142138</td><td>DB Agency</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">15</span></td><td>117852</td><td>Nwafor2025</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">16</span></td><td>143551</td><td>KwaNtimandzs</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">17</span></td><td>123474</td><td>OFFICIALNEPAL</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">18</span></td><td>144135</td><td>Anisha</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">19</span></td><td>141371</td><td>Chiso agency</td><td class="num">9</td></tr>
-              <tr><td><span class="rank">20</span></td><td>136777</td><td>Val</td><td class="num">8</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="grid cols-2" style="padding:16px;">
+        <table>
+          <thead><tr><th class="rank">排名</th><th>充值金币</th><th class="num">金币</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td>Dpmax Agency<div class="gid">143427</div></td><td class="num">53,456,158</td></tr>
+            <tr><td class="rank">2</td><td>Davoo Agency<div class="gid">139516</div></td><td class="num">15,076,200</td></tr>
+            <tr><td class="rank">3</td><td>SBR Agency<div class="gid">142101</div></td><td class="num">14,347,050</td></tr>
+            <tr><td class="rank">4</td><td>CHERRY AGENCY<div class="gid">130462</div></td><td class="num">14,044,657</td></tr>
+            <tr><td class="rank">5</td><td>MLG :2:<div class="gid">142574</div></td><td class="num">12,325,400</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th class="rank">排名</th><th>游戏金币消耗</th><th class="num">金币</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td>Dpmax Agency<div class="gid">143427</div></td><td class="num">176,714,325</td></tr>
+            <tr><td class="rank">2</td><td>CHERRY AGENCY<div class="gid">130462</div></td><td class="num">154,449,575</td></tr>
+            <tr><td class="rank">3</td><td>Bheda<div class="gid">143915</div></td><td class="num">128,778,385</td></tr>
+            <tr><td class="rank">4</td><td>MLG :2:<div class="gid">142574</div></td><td class="num">118,467,710</td></tr>
+            <tr><td class="rank">5</td><td>Ganesh Agency<div class="gid">139805</div></td><td class="num">90,318,765</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th class="rank">排名</th><th>游戏参与人数</th><th class="num">人数</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td>OFFICIALNEPAL<div class="gid">123474</div></td><td class="num">176</td></tr>
+            <tr><td class="rank">2</td><td>CHERRY AGENCY<div class="gid">130462</div></td><td class="num">159</td></tr>
+            <tr><td class="rank">3</td><td>Nepal Top Agency<div class="gid">141886</div></td><td class="num">118</td></tr>
+            <tr><td class="rank">4</td><td>RG<div class="gid">139876</div></td><td class="num">118</td></tr>
+            <tr><td class="rank">5</td><td>Nana<div class="gid">141031</div></td><td class="num">110</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th class="rank">排名</th><th>幸运礼物金币消耗</th><th class="num">金币</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td>Agency Paari<div class="gid">138927</div></td><td class="num">58,623,434</td></tr>
+            <tr><td class="rank">2</td><td>Thapa agency<div class="gid">141148</div></td><td class="num">16,185,470</td></tr>
+            <tr><td class="rank">3</td><td>Nana<div class="gid">141031</div></td><td class="num">13,206,452</td></tr>
+            <tr><td class="rank">4</td><td>THE GREATER NEPAL<div class="gid">139651</div></td><td class="num">12,589,964</td></tr>
+            <tr><td class="rank">5</td><td>MAGAR WARRIOR AGENCY<div class="gid">142333</div></td><td class="num">10,623,680</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th class="rank">排名</th><th>幸运礼物送礼人数</th><th class="num">人数</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td>Nana<div class="gid">141031</div></td><td class="num">212</td></tr>
+            <tr><td class="rank">2</td><td>OFFICIALNEPAL<div class="gid">123474</div></td><td class="num">175</td></tr>
+            <tr><td class="rank">3</td><td>CHERRY AGENCY<div class="gid">130462</div></td><td class="num">162</td></tr>
+            <tr><td class="rank">4</td><td>Nepal Top Agency<div class="gid">141886</div></td><td class="num">117</td></tr>
+            <tr><td class="rank">5</td><td>HONEY AGENCY<div class="gid">129077</div></td><td class="num">116</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th class="rank">排名</th><th>邀请人数</th><th class="num">人数</th></tr></thead>
+          <tbody>
+            <tr><td class="rank">1</td><td>OFFICIALNEPAL<div class="gid">123474</div></td><td class="num">14</td></tr>
+            <tr><td class="rank">2</td><td>AGT CLARIS<div class="gid">109731</div></td><td class="num">10</td></tr>
+            <tr><td class="rank">3</td><td>Sikhanyiso<div class="gid">143890</div></td><td class="num">10</td></tr>
+            <tr><td class="rank">4</td><td>Shanti<div class="gid">142782</div></td><td class="num">6</td></tr>
+            <tr><td class="rank">5</td><td>HONEY AGENCY<div class="gid">129077</div></td><td class="num">6</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-head">
-        <h2>幸运礼物与新公会</h2>
-        <div class="hint">幸运礼物已从“个数”改为金币消耗口径；近 7 天创建公会按事件属性里的公会创建时间判断。</div>
-      </div>
-      <div class="tables">
-        <div class="table-block">
-          <div class="table-title"><span>幸运礼物金币消耗 Top 20</span><span>gift_send.gold，gift_type=lucky</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th class="num">消耗金币</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>140143</td><td>NUCLEAR AGENCY</td><td class="num">23,965,688</td></tr>
-              <tr><td><span class="rank">2</span></td><td>134640</td><td>SOUND AUTHORITY</td><td class="num">19,308,620</td></tr>
-              <tr><td><span class="rank">3</span></td><td>141031</td><td>Nana</td><td class="num">15,719,054</td></tr>
-              <tr><td><span class="rank">4</span></td><td>141148</td><td>Thapa agency</td><td class="num">13,782,010</td></tr>
-              <tr><td><span class="rank">5</span></td><td>141458</td><td>GOD AGENCY</td><td class="num">13,445,786</td></tr>
-              <tr><td><span class="rank">6</span></td><td>-</td><td>未归属</td><td class="num">10,598,780</td></tr>
-              <tr><td><span class="rank">7</span></td><td>142430</td><td>Himal Agency</td><td class="num">10,318,064</td></tr>
-              <tr><td><span class="rank">8</span></td><td>130462</td><td>CHERRY AGENCY</td><td class="num">9,709,314</td></tr>
-              <tr><td><span class="rank">9</span></td><td>139651</td><td>THE GREATER NEPAL</td><td class="num">9,594,766</td></tr>
-              <tr><td><span class="rank">10</span></td><td>141883</td><td>TOUGH AGENCY</td><td class="num">9,263,470</td></tr>
-              <tr><td><span class="rank">11</span></td><td>141421</td><td>ZK Agency</td><td class="num">8,831,284</td></tr>
-              <tr><td><span class="rank">12</span></td><td>142333</td><td>MAGAR WARRIOR AGENCY</td><td class="num">8,233,576</td></tr>
-              <tr><td><span class="rank">13</span></td><td>140268</td><td>Bintang siger</td><td class="num">8,195,410</td></tr>
-              <tr><td><span class="rank">14</span></td><td>142080</td><td>LEA Inc AGENCY</td><td class="num">7,765,408</td></tr>
-              <tr><td><span class="rank">15</span></td><td>139455</td><td>Brav3 Agency</td><td class="num">7,597,590</td></tr>
-              <tr><td><span class="rank">16</span></td><td>142747</td><td>GRACE AGENCY</td><td class="num">6,743,926</td></tr>
-              <tr><td><span class="rank">17</span></td><td>141886</td><td>Nepal Top Agency</td><td class="num">6,299,686</td></tr>
-              <tr><td><span class="rank">18</span></td><td>138927</td><td>Agency Paari</td><td class="num">6,263,812</td></tr>
-              <tr><td><span class="rank">19</span></td><td>139876</td><td>RG</td><td class="num">6,182,348</td></tr>
-              <tr><td><span class="rank">20</span></td><td>138861</td><td>Berkah Management</td><td class="num">6,055,886</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>幸运礼物送礼人数 Top 20</span><span>gift_send 触发用户数，gift_type=lucky</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th class="num">送礼人数</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>-</td><td>未归属</td><td class="num">664</td></tr>
-              <tr><td><span class="rank">2</span></td><td>141031</td><td>Nana</td><td class="num">216</td></tr>
-              <tr><td><span class="rank">3</span></td><td>130462</td><td>CHERRY AGENCY</td><td class="num">207</td></tr>
-              <tr><td><span class="rank">4</span></td><td>123474</td><td>OFFICIALNEPAL</td><td class="num">193</td></tr>
-              <tr><td><span class="rank">5</span></td><td>141886</td><td>Nepal Top Agency</td><td class="num">140</td></tr>
-              <tr><td><span class="rank">6</span></td><td>129077</td><td>HONEY AGENCY</td><td class="num">134</td></tr>
-              <tr><td><span class="rank">7</span></td><td>140906</td><td>Welcome To Reality</td><td class="num">132</td></tr>
-              <tr><td><span class="rank">8</span></td><td>116851</td><td>LION AGENCY</td><td class="num">118</td></tr>
-              <tr><td><span class="rank">9</span></td><td>140580</td><td>COOL AGENCY BG</td><td class="num">112</td></tr>
-              <tr><td><span class="rank">10</span></td><td>139876</td><td>RG</td><td class="num">111</td></tr>
-              <tr><td><span class="rank">11</span></td><td>116236</td><td>crusher agency</td><td class="num">105</td></tr>
-              <tr><td><span class="rank">12</span></td><td>117852</td><td>Nwafor2025</td><td class="num">103</td></tr>
-              <tr><td><span class="rank">13</span></td><td>0</td><td>empty guild</td><td class="num">102</td></tr>
-              <tr><td><span class="rank">14</span></td><td>133175</td><td>JUST FOR YOU</td><td class="num">99</td></tr>
-              <tr><td><span class="rank">15</span></td><td>103415</td><td>VOICENEPAL</td><td class="num">95</td></tr>
-              <tr><td><span class="rank">16</span></td><td>142780</td><td>Borosw Agency</td><td class="num">94</td></tr>
-              <tr><td><span class="rank">17</span></td><td>140268</td><td>Bintang siger</td><td class="num">92</td></tr>
-              <tr><td><span class="rank">18</span></td><td>141227</td><td>MANKAMANA</td><td class="num">87</td></tr>
-              <tr><td><span class="rank">19</span></td><td>132501</td><td>Coffee Agency</td><td class="num">87</td></tr>
-              <tr><td><span class="rank">20</span></td><td>139805</td><td>Ganesh Agency</td><td class="num">86</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>近 7 天创建公会表现</span><span>创建时间 2026-09-08 至 2026-09-14</span></div>
-          <table>
-            <thead><tr><th>排名</th><th>公会 ID</th><th>公会名</th><th>创建时间</th><th class="num">昨日充值金币</th></tr></thead>
-            <tbody>
-              <tr><td><span class="rank">1</span></td><td>144149</td><td>OGxAGENCY</td><td>2026-09-08</td><td class="num">1,481,600</td></tr>
-              <tr><td><span class="rank">2</span></td><td>144224</td><td>Sayera Agency</td><td>2026-09-11</td><td class="num">259,200</td></tr>
-              <tr><td><span class="rank">3</span></td><td>144163</td><td>Maya agency</td><td>2026-09-09</td><td class="num">171,800</td></tr>
-              <tr><td><span class="rank">4</span></td><td>144171</td><td>Rising Star Agency</td><td>2026-09-09</td><td class="num">148,200</td></tr>
-              <tr><td><span class="rank">5</span></td><td>144142</td><td>Baram Agency</td><td>2026-09-08</td><td class="num">130,800</td></tr>
-              <tr><td><span class="rank">6</span></td><td>144204</td><td>Moods</td><td>2026-09-11</td><td class="num">73,600</td></tr>
-              <tr><td><span class="rank">7</span></td><td>144187</td><td>PRETTY QUEEN</td><td>2026-09-10</td><td class="num">50,000</td></tr>
-              <tr><td><span class="rank">8</span></td><td>144133</td><td>PAKISTANI AGENCY</td><td>2026-09-08</td><td class="num">50,000</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>口径说明</span><span>已同步当前讨论口径</span></div>
-          <table>
-            <tbody>
-              <tr><td><span class="tag">充值</span></td><td>充值金币使用 recharge_complete.gold；exchange 成金币需要在后续日常任务中继续并入口径。</td></tr>
-              <tr><td><span class="tag">游戏</span></td><td>游戏看金币消耗总量和参与人数，不做人均消耗。</td></tr>
-              <tr><td><span class="tag">幸运礼物</span></td><td>幸运礼物看金币消耗和送礼人数，不再使用礼物个数。</td></tr>
-              <tr><td><span class="tag amber">新公会</span></td><td>公会创建时间来自事件属性 agency_create_time。</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <h2>新老公会关注</h2>
-        <div class="hint">老公会预警按昨日与过去 7 天日均对比；用于运营跟进优先级，不等同于最终流失判定。</div>
-      </div>
-      <div class="tables">
-        <div class="table-block">
-          <div class="table-title"><span>新公会成长观察</span><span>近 7 天创建，昨日充值表现</span></div>
-          <table>
-            <thead><tr><th>类型</th><th>公会 ID</th><th>公会名</th><th>创建时间</th><th class="num">昨日充值金币</th><th>判断</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tag">重点扶持</span></td><td>144149</td><td>OGxAGENCY</td><td>2026-09-08</td><td class="num">1,481,600</td><td>新公会中充值最突出</td></tr>
-              <tr><td><span class="tag">成长观察</span></td><td>144224</td><td>Sayera Agency</td><td>2026-09-11</td><td class="num">259,200</td><td>创建时间较新，已有充值</td></tr>
-              <tr><td><span class="tag">成长观察</span></td><td>144163</td><td>Maya agency</td><td>2026-09-09</td><td class="num">171,800</td><td>持续观察 3 日内走势</td></tr>
-              <tr><td><span class="tag">成长观察</span></td><td>144171</td><td>Rising Star Agency</td><td>2026-09-09</td><td class="num">148,200</td><td>已有充值启动迹象</td></tr>
-              <tr><td><span class="tag amber">待激活</span></td><td>144187</td><td>PRETTY QUEEN</td><td>2026-09-10</td><td class="num">50,000</td><td>充值偏低，适合看邀请和游戏承接</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>老公会充值下滑预警</span><span>昨日 vs 过去 7 天日均</span></div>
-          <table>
-            <thead><tr><th>预警</th><th>公会 ID</th><th>公会名</th><th class="num">7天日均</th><th class="num">昨日</th><th class="num">下降</th><th>建议</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tag red">强预警</span></td><td>132774</td><td>Ph Agency</td><td class="num">26,000,493</td><td class="num">2,498,625</td><td class="num">90%</td><td>确认是否为单日爆发后回落</td></tr>
-              <tr><td><span class="tag red">强预警</span></td><td>142598</td><td>SUNLIGHT AGENCY</td><td class="num">7,126,399</td><td class="num">557,600</td><td class="num">92%</td><td>充值明显转弱，建议跟进</td></tr>
-              <tr><td><span class="tag red">强预警</span></td><td>137695</td><td>JIBAN agancy</td><td class="num">6,267,579</td><td class="num">974,600</td><td class="num">84%</td><td>充值活跃度明显下降</td></tr>
-              <tr><td><span class="tag red">强预警</span></td><td>137919</td><td>MYSQ Agency</td><td class="num">26,344,518</td><td class="num">5,629,800</td><td class="num">79%</td><td>充值与游戏均下滑，优先关注</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>老公会游戏变少预警</span><span>昨日 vs 过去 7 天日均</span></div>
-          <table>
-            <thead><tr><th>预警</th><th>公会 ID</th><th>公会名</th><th class="num">7天日均</th><th class="num">昨日</th><th class="num">下降</th><th>建议</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tag red">强预警</span></td><td>143516</td><td>Scorpionking Agency</td><td class="num">49,844,994</td><td class="num">9,630,600</td><td class="num">81%</td><td>游戏消耗接近低位</td></tr>
-              <tr><td><span class="tag red">强预警</span></td><td>141924</td><td>Happy agancy</td><td class="num">66,932,604</td><td class="num">19,917,520</td><td class="num">70%</td><td>高基准公会突然降温</td></tr>
-              <tr><td><span class="tag red">强预警</span></td><td>137919</td><td>MYSQ Agency</td><td class="num">233,673,584</td><td class="num">87,075,665</td><td class="num">63%</td><td>充值与游戏双降，优先关注</td></tr>
-              <tr><td><span class="tag amber">观察</span></td><td>142101</td><td>SBR Agency</td><td class="num">66,867,490</td><td class="num">39,061,090</td><td class="num">42%</td><td>游戏消耗回落，暂列观察</td></tr>
-              <tr><td><span class="tag amber">观察</span></td><td>139805</td><td>Ganesh Agency</td><td class="num">78,656,919</td><td class="num">49,932,150</td><td class="num">37%</td><td>游戏变少，但充值仍有承接</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-block">
-          <div class="table-title"><span>运营判断规则</span><span>建议纳入每日自动看板</span></div>
-          <table>
-            <tbody>
-              <tr><td><span class="tag">新公会冒头</span></td><td>近 7 天创建，充值、游戏或幸运礼物任一指标进入明显高位。</td></tr>
-              <tr><td><span class="tag red">老公会预警</span></td><td>过去 7 天日均不低，但昨日充值或游戏消耗下降 50% 以上。</td></tr>
-              <tr><td><span class="tag amber">待激活</span></td><td>新公会有邀请或轻微充值，但游戏消耗和礼物消耗承接弱。</td></tr>
-              <tr><td><span class="tag amber">波动复核</span></td><td>若基准来自单日爆发，需要结合连续 3 天趋势再判断是否真的流失。</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section>
       <div class="section-head">
         <h2>老公会近 7 天增长榜</h2>
-        <div class="hint">老公会=创建时间早于 2026-09-08；近 7 天为 2026-09-08 至 2026-09-14，对比前 7 天。</div>
+        <span class="note">创建时间早于 2026-09-09；对比 09-09 至 09-15 与前 7 天，重点看幸运礼物、游戏、邀请。</span>
       </div>
-      <div class="tables">
-        <div class="table-block">
-          <div class="table-title"><span>游戏金币消耗增长</span><span>增长最明显</span></div>
-          <table>
-            <thead><tr><th>公会ID</th><th>公会名</th><th>创建时间</th><th>前7天</th><th>近7天</th><th>增长</th><th>建议</th></tr></thead>
-            <tbody>
-              <tr><td>142574</td><td>MLG :2</td><td>2026-07-27</td><td>70,428,130</td><td>425,773,780</td><td><span class="tag red">+505%</span></td><td>确认是否由核心玩家或活动带动，优先承接。</td></tr>
-              <tr><td>126667</td><td>Manasse</td><td>2025-06-03</td><td>105,606,890</td><td>344,629,640</td><td><span class="tag red">+226%</span></td><td>复盘 09-14 单日高峰，观察能否连续。</td></tr>
-              <tr><td>141277</td><td>Bona</td><td>2026-04-30</td><td>122,485,230</td><td>323,214,150</td><td><span class="tag amber">+164%</span></td><td>游戏承接变强，可联动充值和礼物看质量。</td></tr>
-              <tr><td>143427</td><td>Dpmax Agency</td><td>2026-08-22</td><td>722,409,125</td><td>1,673,482,465</td><td><span class="tag amber">+132%</span></td><td>体量大且继续增长，适合放进重点跟进池。</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <table>
+        <thead>
+          <tr><th>类型</th><th>公会</th><th class="num">前 7 天</th><th class="num">近 7 天</th><th class="num">增长</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="pill teal">游戏增长</span></td><td>MLG :2:<div class="gid">142574，创建 2026-07-27</div></td><td class="num">88,793,500</td><td class="num">511,928,840</td><td class="num">+477%</td><td>近 7 天游戏消耗快速放量，适合跟进充值承接与高价值玩家结构。</td></tr>
+          <tr><td><span class="pill teal">游戏增长</span></td><td>Dpmax Agency<div class="gid">143427，创建 2026-08-22</div></td><td class="num">835,146,235</td><td class="num">1,732,166,680</td><td class="num">+107%</td><td>基数高且继续增长，是老公会回升里的核心样本。</td></tr>
+          <tr><td><span class="pill teal">游戏增长</span></td><td>Bheda<div class="gid">143915，创建 2026-09-02</div></td><td class="num">224,528,745</td><td class="num">392,430,255</td><td class="num">+75%</td><td>虽创建较近但已超过 7 天，昨日单日游戏进入前三。</td></tr>
+          <tr><td><span class="pill purple">幸运礼物</span></td><td>Himal Agency<div class="gid">142430，创建 2026-07-20</div></td><td class="num">13,028,320</td><td class="num">30,067,286</td><td class="num">+131%</td><td>幸运礼物明显走强，可观察是否由少数送礼用户驱动。</td></tr>
+          <tr><td><span class="pill purple">幸运礼物</span></td><td>THE GREATER NEPAL<div class="gid">139651，创建 2026-01-26</div></td><td class="num">22,330,964</td><td class="num">45,774,826</td><td class="num">+105%</td><td>礼物消费连续性较好，适合做礼物活动复盘。</td></tr>
+          <tr><td><span class="pill purple">幸运礼物</span></td><td>Agency Paari<div class="gid">138927，创建 2025-12-22</div></td><td class="num">55,973,284</td><td class="num">88,488,854</td><td class="num">+58%</td><td>昨日贡献 58,623,434 金币，是礼物侧最大拉升点。</td></tr>
+          <tr><td><span class="pill amber">邀请增长</span></td><td>VOICENEPAL<div class="gid">103415，创建 2024-10-15</div></td><td class="num">49</td><td class="num">62</td><td class="num">+27%</td><td>邀请侧整体回落下仍有小幅增长，可看新增质量。</td></tr>
+          <tr><td><span class="pill amber">邀请增长</span></td><td>AGT CLARIS<div class="gid">109731，创建 2025-03-05</div></td><td class="num">64</td><td class="num">80</td><td class="num">+25%</td><td>昨日邀请 10 人，近期邀请保持正增长。</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-        <div class="table-block">
-          <div class="table-title"><span>幸运礼物金币增长</span><span>按金币消耗，不看个数</span></div>
-          <table>
-            <thead><tr><th>公会ID</th><th>公会名</th><th>创建时间</th><th>前7天</th><th>近7天</th><th>增长</th><th>建议</th></tr></thead>
-            <tbody>
-              <tr><td>142333</td><td>MAGAR WARRIOR AGENCY</td><td>2026-07-16</td><td>55,648,288</td><td>174,457,448</td><td><span class="tag red">+214%</span></td><td>礼物消耗拉升明显，优先看收礼房间和主播承接。</td></tr>
-              <tr><td>140143</td><td>NUCLEAR AGENCY</td><td>2026-02-21</td><td>19,030,914</td><td>45,373,522</td><td><span class="tag amber">+138%</span></td><td>09-14 有明显冲高，建议次日继续盯趋势。</td></tr>
-              <tr><td>116851</td><td>LION AGENCY</td><td>2025-04-21</td><td>42,213,676</td><td>62,618,080</td><td><span class="tag">+48%</span></td><td>增长稳定但幅度中等，可结合游戏消耗判断质量。</td></tr>
-              <tr><td>141148</td><td>Thapa agency</td><td>2026-04-22</td><td>50,228,906</td><td>73,608,706</td><td><span class="tag">+47%</span></td><td>礼物连续承接不错，适合看重点送礼用户变化。</td></tr>
-            </tbody>
-          </table>
-        </div>
+    <section>
+      <div class="section-head">
+        <h2>新公会成长观察</h2>
+        <span class="note">近 7 天创建的公会，本日重点从充值、游戏、幸运礼物、邀请四类指标观察。</span>
+      </div>
+      <table>
+        <thead><tr><th>公会</th><th>创建时间</th><th>昨日突出点</th><th>建议</th></tr></thead>
+        <tbody>
+          <tr><td>暂无强信号样本</td><td>2026-09-09 至 2026-09-15</td><td>昨日核心榜单主要由创建超过 7 天的公会贡献。</td><td><span class="pill amber">成长观察</span> 建议自动化继续保留新公会榜，等待出现充值、游戏或邀请突出的新公会。</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-        <div class="table-block">
-          <div class="table-title"><span>邀请人数增长</span><span>整体增长相对温和</span></div>
-          <table>
-            <thead><tr><th>公会ID</th><th>公会名</th><th>创建时间</th><th>前7天</th><th>近7天</th><th>增长</th><th>建议</th></tr></thead>
-            <tbody>
-              <tr><td>141886</td><td>Nepal Top Agency</td><td>2026-06-13</td><td>86</td><td>141</td><td><span class="tag amber">+64%</span></td><td>邀请增长最明显，可看新增用户后续充值和游戏承接。</td></tr>
-              <tr><td>103415</td><td>VOICENEPAL</td><td>2024-10-15</td><td>44</td><td>67</td><td><span class="tag">+52%</span></td><td>老公会重新拉新，建议跟进公会长动作。</td></tr>
-              <tr><td>142780</td><td>Borosw Agency</td><td>2026-08-05</td><td>356</td><td>404</td><td><span class="tag">+13%</span></td><td>基数高但增长不陡，重点看转化质量。</td></tr>
-              <tr><td>130462</td><td>CHERRY AGENCY</td><td>2025-06-25</td><td>198</td><td>207</td><td><span class="tag">+5%</span></td><td>保持稳定，暂不算强增长。</td></tr>
-            </tbody>
-          </table>
-        </div>
+    <section>
+      <div class="section-head">
+        <h2>老公会下滑预警</h2>
+        <span class="note">本次明显下滑更多集中在邀请侧；充值口径因 exchange 待确认，暂不做强流失定性。</span>
+      </div>
+      <table>
+        <thead><tr><th>公会</th><th>指标</th><th class="num">昨日</th><th class="num">近 7 天日均</th><th class="num">变化</th><th>建议</th></tr></thead>
+        <tbody>
+          <tr><td>Borosw Agency<div class="gid">142780</div></td><td>邀请人数</td><td class="num">4</td><td class="num">57.7</td><td class="num">-93%</td><td>邀请从高位回落，优先确认是否活动结束、主播停邀或渠道异常。</td></tr>
+          <tr><td>CHERRY AGENCY<div class="gid">130462</div></td><td>邀请人数</td><td class="num">5</td><td class="num">29.6</td><td class="num">-83%</td><td>游戏与礼物仍强，邀请弱化更像拉新节奏问题，适合单独跟进公会长。</td></tr>
+          <tr><td>Sikhanyiso<div class="gid">143890</div></td><td>邀请人数</td><td class="num">10</td><td class="num">40.6</td><td class="num">-75%</td><td>此前邀请基数很高，昨日仍在榜内但下滑明显，建议看连续 3 天是否恢复。</td></tr>
+          <tr><td>HONEY AGENCY<div class="gid">129077</div></td><td>邀请人数</td><td class="num">6</td><td class="num">20.4</td><td class="num">-71%</td><td>礼物送礼人数仍排前，拉新和消费活跃出现分化。</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-        <div class="table-block">
-          <div class="table-title"><span>判断口径</span><span>以后每天固定展示</span></div>
-          <table>
-            <tbody>
-              <tr><td><span class="tag">老公会</span></td><td>创建时间不在最近 7 天内；如果创建时间不能直接筛选，就在结果中带出创建时间后本地排除。</td></tr>
-              <tr><td><span class="tag red">重点增长</span></td><td>优先看近 7 天相对前 7 天增幅，同时保留绝对规模，避免只被小基数误导。</td></tr>
-              <tr><td><span class="tag amber">三类指标</span></td><td>幸运礼物看金币消耗，游戏看金币消耗，邀请看邀请人数。</td></tr>
-              <tr><td><span class="tag">运营动作</span></td><td>先跟进高增长且有规模的公会，再看增长来源是玩家、房间、主播还是公会长拉新。</td></tr>
-            </tbody>
-          </table>
-        </div>
+    <section>
+      <div class="section-head">
+        <h2>运营标签</h2>
+        <span class="note">用于快速分派跟进动作。</span>
+      </div>
+      <div class="cards">
+        <div class="mini"><span class="pill green">高充值高游戏</span><h3>Dpmax Agency</h3><p>充值与游戏双第一，近 7 天游戏仍大幅增长，建议作为重点维护样本。</p></div>
+        <div class="mini"><span class="pill teal">游戏型公会</span><h3>MLG :2:、Bheda</h3><p>游戏消耗增长强，优先看充值承接、游戏玩家留存与高消耗用户结构。</p></div>
+        <div class="mini"><span class="pill purple">礼物活跃</span><h3>Agency Paari、THE GREATER NEPAL</h3><p>幸运礼物金币贡献高，适合结合送礼人数判断是否集中在少数大 R。</p></div>
+        <div class="mini"><span class="pill amber">高邀请弱消费</span><h3>OFFICIALNEPAL、AGT CLARIS</h3><p>邀请在前，但充值与游戏未同步进入头部，可看受邀用户首充与游戏启动。</p></div>
+        <div class="mini"><span class="pill red">邀请回落</span><h3>Borosw、Sikhanyiso、HONEY</h3><p>昨日邀请较近 7 天均值明显下降，建议连续观察 3 天并确认公会长动作。</p></div>
+        <div class="mini"><span class="pill">口径待补</span><h3>diamond exchange</h3><p>已确认业务需要纳入充值侧，但本次未能确认具体 exchange 事件属性，后续补齐后自动合并。</p></div>
       </div>
     </section>
 
-    <footer>
-      数据来源：Boloup 数数 MCP 只读查询。该页面为静态看板，路径 work/guild-daily-dashboard-20260915/index.html。
-    </footer>
+    <div class="footer">
+      说明：幸运礼物消耗使用 gift_send.gold 且 gift_type=lucky；游戏消耗使用 game_daily_betting.total_bet_amount；邀请使用 invite_complete 次数；公会创建时间来自事件属性 agency_create_time。
+    </div>
   </main>
 </body>
 </html>
