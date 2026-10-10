@@ -20,7 +20,7 @@ table{width:100%;min-width:430px;border-collapse:collapse;table-layout:fixed}.wi
 @media(max-width:900px){main{padding:15px}.kpis,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){header{display:block}.stamp{text-align:left;margin-top:8px}.kpis,.grid{grid-template-columns:1fr}.head{display:block}.table-scroll{max-height:500px}}
 </style></head><body><main>
-<header><div><h1>Boloup 公会日报看板</h1><div class="muted">数据日期：2026-10-09（北京时间）</div></div><div class="stamp">生成：2026-10-10 10:47<br>ThinkingData 只读查询</div></header>
+<header><div><h1>Boloup 公会日报看板</h1><div class="muted">数据日期：2026-10-09（北京时间）</div></div><div class="stamp">生成：2026-10-10 10:56<br>ThinkingData 只读查询</div></header>
 <div class="kpis">
 <div class="kpi"><div class="k-label">充值金币第一</div><strong>156,605,400</strong><div>MYSQ Agency · ID 137919</div></div>
 <div class="kpi"><div class="k-label">游戏金币消耗第一（Coin）</div><strong>1,137,024,860</strong><div>MYSQ Agency · ID 137919</div></div>
@@ -379,5 +379,5 @@ table{width:100%;min-width:430px;border-collapse:collapse;table-layout:fixed}.wi
 <tr><td>15</td><td><span class="pill green">游戏型公会</span></td><td>OFFICIALNEPAL<small>ID 123474 · 创建 2025-05-22</small></td><td>游戏消耗 71,019,700，充值 3,401,500</td></tr>
 <tr><td>16</td><td><span class="pill green">游戏型公会</span></td><td>🍒CHERRY🍒AGENCY🍒<small>ID 130462 · 创建 2025-06-25</small></td><td>游戏消耗 51,823,475，充值 9,281,760</td></tr></tbody></table></div></div>
 </section>
-<div class="foot">口径：充值金币为 recharge_complete.gold；游戏金币消耗为 game_daily_betting.total_bet_amount 且 currency=Coin，参与人数为相同筛选下的触发用户数；currency=Bean 的免费币投注不计入游戏金币消耗。room_type 在已查询事件中为空，若免费场也使用 Coin，仍需房间标识才能进一步排除；幸运礼物金币消耗为 gift_send.gold，送礼人数为其触发用户数，两者均筛选 gift_type=lucky；邀请人数以 invite_complete 次数表示。按事件属性 agency_id、agency_name、agency_create_time 归属公会；缺失公会 ID 的行不入榜。老公会增长筛选下限：幸运礼物前/近七天分别不少于 100万/200万金币，游戏分别不少于 500万/1000万金币，邀请分别不少于 5/8 人次。预警基准：充值日均至少 50万金币、游戏日均至少 500万金币；若七日某天贡献超过一半，标“峰值波动复核”。数数事件目录未发现可确认的 diamonds exchange 事件，故未并入充值；10000 diamonds = 9200 coins 的换算待事件及到账字段核实。</div>
+<div class="foot">口径：充值金币为 recharge_complete.gold，对 recharge_method 不设筛选，因此包含 diamond、coiner 及各支付渠道。10月9日 diamond 方式的 gold 与 amount×9200 一致，已包含钻石兑换金币，不应重复换算相加；游戏金币消耗为 game_daily_betting.total_bet_amount 且 currency=Coin，参与人数为相同筛选下的触发用户数；currency=Bean 的免费币投注不计入游戏金币消耗。room_type 在已查询事件中为空，若免费场也使用 Coin，仍需房间标识才能进一步排除；幸运礼物金币消耗为 gift_send.gold，送礼人数为其触发用户数，两者均筛选 gift_type=lucky；邀请人数以 invite_complete 次数表示。按事件属性 agency_id、agency_name、agency_create_time 归属公会；缺失公会 ID 的行不入榜。老公会增长筛选下限：幸运礼物前/近七天分别不少于 100万/200万金币，游戏分别不少于 500万/1000万金币，邀请分别不少于 5/8 人次。预警基准：充值日均至少 50万金币、游戏日均至少 500万金币；若七日某天贡献超过一半，标“峰值波动复核”。充值榜为所有方式的到账金币，不等同于现金付费充值额。</div>
 </main></body></html>
